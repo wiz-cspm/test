@@ -106,8 +106,8 @@ resource "aws_cloudformation_stack_set_instance" "org_scanner" {
 }
 
 resource "aws_cloudformation_stack_set" "org_auto_rem_ca_role" {
-  name             = "nyl-${var.lob}-${var.env}-wiz-org-auto-rem-ca-role"
-  description      = "Wiz AWS Auto Remediation CrossAccountRole deployment"
+  name        = "nyl-${var.lob}-${var.env}-wiz-org-auto-rem-ca-role"
+  description = "Wiz AWS Auto Remediation CrossAccountRole deployment"
   #template_url     = "https://wizio-public.s3.us-east-2.amazonaws.com/deployment-v2/aws/remediation/cft/cft_cross_account_role.json" # orignal url for wiz auto rem cr role
   template_body    = file("${path.module}/cft-template/cft_cross_account_role_v1.json") # customized cft template with prunned premissions for wiz auto rem cr role
   permission_model = "SERVICE_MANAGED"
@@ -135,7 +135,7 @@ resource "aws_cloudformation_stack_set_instance" "org_auto_rem_ca_role" {
   stack_set_name = aws_cloudformation_stack_set.org_auto_rem_ca_role.name
   deployment_targets {
     organizational_unit_ids = [
-      var.organization_id, 
+      var.organization_id,
     ]
   }
   timeouts {
